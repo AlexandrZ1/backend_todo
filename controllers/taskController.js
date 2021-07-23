@@ -1,4 +1,4 @@
-let bd = require('../bd/bd')
+let db = require('../db.json')
 const fs = require('fs')
 const { v4: uuidv4 } = require('uuid')
 const moment = require('moment')
@@ -8,23 +8,23 @@ class TaskController {
     try {
       const { userId } = req.params
       const { name } = req.body
-      bd.tasks = [
-        ...bd.tasks,
+      db.tasks = [
+        ...db.tasks,
         {
           uuid: uuidv4(),
           name: name,
           done: false,
           userId: userId,
-          updatedAt: moment().zone(-180).format(),
-          createdAt: moment().zone(-180).format(),
+          updatedAt: moment().utcOffset('').format(),
+          createdAt: moment().utcOffset('').format(),
         },
       ]
-      const string = JSON.stringify(bd, null, '\t')
-      await fs.writeFile('./bd/bd.json', string, function (err) {
+      const string = JSON.stringify(db, null, '\t')
+      fs.writeFile('db.json', string, function (err) {
         if (err) return console.error(err)
         console.log('done')
       })
-      return res.json(bd.tasks)
+      return res.json(db.tasks)
     } catch (e) {
       return res.status(500)
     }
@@ -33,21 +33,21 @@ class TaskController {
     try {
       const { userId, taskId } = req.params
       const { name, done } = req.body
-      bd.tasks = bd.tasks.map((item) => {
+      db.tasks = db.tasks.map((item) => {
         if (item.uuid === taskId) {
           if (!!name) item.name = name
           if (!!done) item.done = done
-          item.updatedAt = moment().zone(-180).format()
+          item.updatedAt = moment().utcOffset('').format()
           return item
         }
         return item
       })
-      const string = JSON.stringify(bd, null, '\t')
-      await fs.writeFile('./bd/bd.json', string, function (err) {
+      const string = JSON.stringify(db, null, '\t')
+      await fs.writeFile('db.json', string, function (err) {
         if (err) return console.error(err)
         console.log('done')
       })
-      return res.json(bd.tasks)
+      return res.json(db.tasks)
     } catch (e) {
       return res.status(500)
     }
@@ -55,13 +55,13 @@ class TaskController {
   async deleteTask(req, res) {
     try {
       const { userId, taskId } = req.params
-      bd.tasks = bd.tasks.filter((item) => item.uuid !== taskId)
-      const string = JSON.stringify(bd, null, '\t')
-      await fs.writeFile('./bd/bd.json', string, function (err) {
+      db.tasks = db.tasks.filter((item) => item.uuid !== taskId)
+      const string = JSON.stringify(db, null, '\t')
+      await fs.writeFile('db.json', string, function (err) {
         if (err) return console.error(err)
         console.log('done')
       })
-      return res.json(bd.tasks)
+      return res.json(db.tasks)
     } catch (e) {
       return res.status(500)
     }
@@ -73,12 +73,12 @@ class TaskController {
       const { page } = req.params
       console.log(req.query)
       const { name, done } = req.body
-      let tasks = bd.tasks.sort(
+      let tasks = db.tasks.sort(
         order === 'asc'
           ? (a, b) => (a.updatedAt > b.updatedAt ? 1 : -1)
           : (a, b) => (a.updatedAt > b.updatedAt ? -1 : 1)
       )
-      tasks = bd.tasks.filter((item) =>
+      tasks = db.tasks.filter((item) =>
         filterBy === 'done'
           ? item.done
           : filterBy === 'undone'
