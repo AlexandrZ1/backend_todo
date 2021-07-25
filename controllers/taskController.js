@@ -2,6 +2,7 @@ let db = require('../db.json')
 const fs = require('fs')
 const { v4: uuidv4 } = require('uuid')
 const moment = require('moment')
+const ApiError = require('../error/ApiError')
 
 class TaskController {
   async createTask(req, res) {
@@ -67,10 +68,9 @@ class TaskController {
     }
   }
 
-  async getTasks(req, res) {
+  async getTasks(req, res, next) {
     try {
-      const { filterBy, order } = req.query
-      const { page } = req.params
+      const { filterBy, order, page } = req.query
       console.log(req.query)
       const { name, done } = req.body
       let tasks = db.tasks.sort(
