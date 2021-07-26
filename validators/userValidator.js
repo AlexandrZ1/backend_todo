@@ -25,5 +25,5 @@ exports.userValidator = [
     .isEmpty()
     .withMessage('Validation error: Password is required')
     .isLength({ min: 6 })
-    .withMessage('Validation error: Passwor must be atleast 7 characters long'),
+    .withMessage('Validation error: Passwor must be atleast 8 characters long'),
 ]

@@ -26,6 +26,7 @@ class TaskController {
         return res.status(200).json(task)
       } else next(ApiError.badRequest('User is not found'))
     } catch (e) {
+      console.log(e)
       next()
     }
   }

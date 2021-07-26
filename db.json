@@ -1,92 +1,19 @@
 {
 	"tasks": [
 		{
-			"uuid": "aedabd60-8d9e-4926-a91c-ea74b88f8f56",
-			"name": "1010",
-			"done": false,
-			"userId": "dbd2c35a-b877-4c0b-b103-75a8a44dfe48",
-			"updatedAt": "2021-07-26T08:43:00+03:00",
-			"createdAt": "2021-07-26T08:43:00+03:00"
-		},
-		{
-			"uuid": "a1847edb-2cc9-4721-a94b-0fe40b4395ea",
-			"name": "99",
-			"done": false,
-			"userId": "dbd2c35a-b877-4c0b-b103-75a8a44dfe48",
-			"updatedAt": "2021-07-26T08:42:50+03:00",
-			"createdAt": "2021-07-26T08:42:50+03:00"
-		},
-		{
-			"uuid": "418d44e8-2889-4ce1-aba5-cce99f98eb62",
-			"name": "88",
-			"done": false,
-			"userId": "dbd2c35a-b877-4c0b-b103-75a8a44dfe48",
-			"updatedAt": "2021-07-26T08:42:46+03:00",
-			"createdAt": "2021-07-26T08:42:46+03:00"
-		},
-		{
-			"uuid": "d334cbcd-5f44-4e26-9ba8-78f67fb48d2e",
-			"name": "77",
-			"done": false,
-			"userId": "dbd2c35a-b877-4c0b-b103-75a8a44dfe48",
-			"updatedAt": "2021-07-26T08:42:43+03:00",
-			"createdAt": "2021-07-26T08:42:43+03:00"
-		},
-		{
-			"uuid": "fc979e72-7e32-481c-849c-d8b0d2c4c8bc",
-			"name": "66",
-			"done": false,
-			"userId": "dbd2c35a-b877-4c0b-b103-75a8a44dfe48",
-			"updatedAt": "2021-07-26T08:42:39+03:00",
-			"createdAt": "2021-07-26T08:42:39+03:00"
-		},
-		{
-			"uuid": "d79a4c49-f3ff-40cb-b8ca-aa2a0914540c",
-			"name": "55",
-			"done": false,
-			"userId": "dbd2c35a-b877-4c0b-b103-75a8a44dfe48",
-			"updatedAt": "2021-07-26T08:42:35+03:00",
-			"createdAt": "2021-07-26T08:42:35+03:00"
-		},
-		{
-			"uuid": "d27e7be0-1c40-40f0-b607-98a716a2a119",
-			"name": "44",
-			"done": false,
-			"userId": "dbd2c35a-b877-4c0b-b103-75a8a44dfe48",
-			"updatedAt": "2021-07-26T08:42:32+03:00",
-			"createdAt": "2021-07-26T08:42:32+03:00"
-		},
-		{
-			"uuid": "2ec08a2e-7f88-4b6e-a07f-ae378cf8439d",
-			"name": "33",
-			"done": false,
-			"userId": "dbd2c35a-b877-4c0b-b103-75a8a44dfe48",
-			"updatedAt": "2021-07-26T08:42:29+03:00",
-			"createdAt": "2021-07-26T08:42:29+03:00"
-		},
-		{
-			"uuid": "0a760ed9-9d30-42b5-9873-93665ffc7652",
-			"name": "22",
-			"done": false,
-			"userId": "dbd2c35a-b877-4c0b-b103-75a8a44dfe48",
-			"updatedAt": "2021-07-26T08:42:25+03:00",
-			"createdAt": "2021-07-26T08:42:25+03:00"
-		},
-		{
-			"uuid": "9d6ca0fa-d803-483b-9b72-c36a128408f2",
-			"name": "11",
-			"done": false,
-			"userId": "dbd2c35a-b877-4c0b-b103-75a8a44dfe48",
-			"updatedAt": "2021-07-26T08:42:19+03:00",
-			"createdAt": "2021-07-26T08:42:19+03:00"
-		},
-		{
-			"uuid": "3c246475-64ab-4269-a4b1-f113263abc17",
+			"uuid": "d30bfa6c-1fc9-4562-9361-2735d5a943b8",
 			"name": "1111",
 			"done": false,
 			"userId": "dbd2c35a-b877-4c0b-b103-75a8a44dfe48",
-			"updatedAt": "2021-07-26T08:44:40+03:00",
-			"createdAt": "2021-07-26T08:44:40+03:00"
+			"updatedAt": "2021-07-26T14:24:31+03:00",
+			"createdAt": "2021-07-26T14:24:31+03:00"
+		}
+	],
+	"users": [
+		{
+			"id": "8276b32d-583f-4520-98fe-02bf58e936ab",
+			"email": "alzinchenko@gmail.com",
+			"password": "$2b$05$D.7lcdaZUp3iFJTDcEwHae1PG5XT1cmyzZD3YGWsGwwtAc7fA2mx."
 		}
 	]
 }
