@@ -29,10 +29,6 @@ exports.taskValidator = [
     .withMessage(
       'Validation error: Message must be at least 2 characters long'
     ),
-  param('userId')
-    .trim()
-    .isUUID()
-    .withMessage("Validation error: Invalid value 'userId' in params"),
   param('taskId')
     .trim()
     .optional({ checkFalsy: true })

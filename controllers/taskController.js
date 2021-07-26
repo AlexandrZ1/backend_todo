@@ -7,7 +7,8 @@ const { writeDb } = require('../utils/queryDb')
 class TaskController {
   async createTask(req, res, next) {
     try {
-      const { userId } = req.params
+      const userId = req.user.id
+      console.log(userId)
       const { name } = req.body
       const task = {
         uuid: uuidv4(),
@@ -33,7 +34,8 @@ class TaskController {
 
   async updateTask(req, res, next) {
     try {
-      const { userId, taskId } = req.params
+      const { taskId } = req.params
+      const userId = req.user.id
       const { name, done } = req.body
       let task
       if (userId) {
@@ -63,7 +65,8 @@ class TaskController {
 
   async deleteTask(req, res, next) {
     try {
-      const { userId, taskId } = req.params
+      const { taskId } = req.params
+      const userId = req.user.id
       if (userId) {
         if (!db.tasks.some((item) => item.uuid === taskId)) {
           return next(ApiError.badRequest('Task not found'))
@@ -81,7 +84,7 @@ class TaskController {
 
   getTasks(req, res, next) {
     try {
-      const { userId } = req.params
+      const userId = req.user.id
       const { filterBy, order, page, visibleRows } = req.query
       if (userId) {
         let tasks = db.tasks.sort(

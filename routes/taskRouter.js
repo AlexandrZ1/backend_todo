@@ -1,31 +1,36 @@
 const Router = require('express')
 const router = new Router()
 const taskController = require('../controllers/taskController')
+const authMiddleware = require('../middleware/authMiddleware')
 const {
   taskValidator,
   taskValidationResult,
 } = require('../validators/taskValidator')
 
 router.post(
-  '/:userId',
+  '',
+  authMiddleware,
   taskValidator,
   taskValidationResult,
   taskController.createTask
 )
 router.patch(
-  '/:userId/:taskId',
+  '/:taskId',
+  authMiddleware,
   taskValidator,
   taskValidationResult,
   taskController.updateTask
 )
 router.delete(
-  '/:userId/:taskId',
+  '/:taskId',
+  authMiddleware,
   taskValidator,
   taskValidationResult,
   taskController.deleteTask
 )
 router.get(
-  '/:userId',
+  '/',
+  authMiddleware,
   taskValidator,
   taskValidationResult,
   taskController.getTasks

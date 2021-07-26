@@ -5,8 +5,8 @@ const jwt = require('jsonwebtoken')
 let db = require('../db.json')
 const { writeDb } = require('../utils/queryDb')
 
-const generateJwt = (id, email) => {
-  return jwt.sign({ id, email }, process.env.SECRET_KEY, { expiresIn: '1h' })
+const generateJwt = (id) => {
+  return jwt.sign({ id }, process.env.SECRET_KEY, { expiresIn: '24h' })
 }
 
 class userController {
@@ -20,7 +20,7 @@ class userController {
       const user = { id: uuidv4(), email: email, password: hashPassword }
       db.users = [...db.users, user]
       await writeDb()
-      const token = generateJwt(user.uuid, user.email)
+      const token = generateJwt(user.id, user.email)
       return res.status(200).json({ token })
     } catch (e) {
       console.log(e)
@@ -40,7 +40,7 @@ class userController {
       }
       let comparePassword = bcrypt.compareSync(password, user.password)
       if (!comparePassword) {
-        return next(ApiError.internal('Wrong password'))
+        return next(ApiError.badRequest('Wrong password'))
       }
       const token = generateJwt(user.id, user.email)
       return res.status(200).json({ token })
