@@ -82,6 +82,7 @@ class TaskController {
     try {
       const { userId } = req.params
       const { filterBy, order, page } = req.query
+
       if (userId) {
         let tasks = db.tasks.sort(
           order === 'asc'
@@ -95,23 +96,14 @@ class TaskController {
             ? !item.done
             : true
         )
+        const realPage = Math.ceil(tasks.length / 5)
         if (!!page)
           return res.status(200).json({
             tasks: tasks.slice(
-              5 *
-                ((Math.ceil(tasks.length / 5) <= page
-                  ? Math.ceil(tasks.length / 5)
-                  : page) -
-                  1),
-              5 *
-                (Math.ceil(tasks.length / 5) <= page
-                  ? Math.ceil(tasks.length / 5)
-                  : page)
+              5 * ((realPage <= page ? realPage : page) - 1),
+              5 * (realPage <= page ? realPage : page)
             ),
-            page:
-              Math.ceil(tasks.length / 5) <= page
-                ? Math.ceil(tasks.length / 5)
-                : page,
+            page: realPage <= page ? realPage : page,
           })
         else
           return res.status(200).json({
