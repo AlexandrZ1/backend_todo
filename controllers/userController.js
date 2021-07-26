@@ -23,8 +23,7 @@ class userController {
       const token = generateJwt(user.id, user.email)
       return res.status(200).json({ token })
     } catch (e) {
-      console.log(e)
-      next()
+      next(ApiError.internal(e.message))
     }
   }
   async login(req, res, next) {
@@ -34,7 +33,6 @@ class userController {
       db.users.map((item) => {
         if (item.email === email) user = item
       })
-      console.log(!!!user)
       if (!!!user) {
         return next(ApiError.badRequest('User with same email not found'))
       }
@@ -45,13 +43,16 @@ class userController {
       const token = generateJwt(user.id, user.email)
       return res.status(200).json({ token })
     } catch (e) {
-      console.log(e)
-      next()
+      next(ApiError.internal(e.message))
     }
   }
   async checkAuth(req, res) {
-    const token = generateJwt(req.user.id, req.user.email)
-    return res.status(200).json({ token })
+    try {
+      const token = generateJwt(req.user.id, req.user.email)
+      return res.status(200).json({ token })
+    } catch {
+      next(ApiError.internal(e.message))
+    }
   }
 }
 

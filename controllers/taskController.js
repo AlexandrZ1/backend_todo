@@ -8,7 +8,6 @@ class TaskController {
   async createTask(req, res, next) {
     try {
       const userId = req.user.id
-      console.log(userId)
       const { name } = req.body
       const task = {
         uuid: uuidv4(),
@@ -27,8 +26,7 @@ class TaskController {
         return res.status(200).json(task)
       } else next(ApiError.badRequest('User is not found'))
     } catch (e) {
-      console.log(e)
-      next()
+      next(ApiError.internal(e.message))
     }
   }
 
@@ -59,7 +57,7 @@ class TaskController {
         return res.status(200).json(task)
       } else return next(ApiError.badRequest('User is not found'))
     } catch (e) {
-      next()
+      next(ApiError.internal(e.message))
     }
   }
 
@@ -72,13 +70,12 @@ class TaskController {
           return next(ApiError.badRequest('Task not found'))
         }
         const task = db.tasks.find((item) => item.uuid === taskId)
-        console.log(task)
         db.tasks = db.tasks.filter((item) => item.uuid !== taskId)
         await writeDb()
         return res.status(200).json(task)
       } else return next(ApiError.badRequest('User is not found'))
     } catch (e) {
-      next()
+      next(ApiError.internal(e.message))
     }
   }
 
@@ -115,7 +112,7 @@ class TaskController {
           })
       } else return next(ApiError.badRequest('User is not found'))
     } catch (e) {
-      next()
+      next(ApiError.internal(e.message))
     }
   }
 }
