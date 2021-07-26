@@ -82,8 +82,7 @@ class TaskController {
   getTasks(req, res, next) {
     try {
       const { userId } = req.params
-      const { filterBy, order, page } = req.query
-
+      const { filterBy, order, page, visibleRows } = req.query
       if (userId) {
         let tasks = db.tasks.sort(
           order === 'asc'
@@ -97,12 +96,12 @@ class TaskController {
             ? !item.done
             : true
         )
-        const realPage = Math.ceil(tasks.length / 5)
-        if (!!page)
+        const realPage = Math.ceil(tasks.length / visibleRows)
+        if (!!page && !!visibleRows)
           return res.status(200).json({
             tasks: tasks.slice(
-              5 * ((realPage <= page ? realPage : page) - 1),
-              5 * (realPage <= page ? realPage : page)
+              visibleRows * ((realPage <= page ? realPage : page) - 1),
+              visibleRows * (realPage <= page ? realPage : page)
             ),
             page: realPage <= page ? realPage : page,
           })

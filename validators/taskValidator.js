@@ -46,4 +46,14 @@ exports.taskValidator = [
     .isIn(['done', 'undone'])
     .optional({ checkFalsy: true })
     .withMessage("Validation error: Invalid value 'filterBy' in query params"),
+  query('page')
+    .optional({ checkFalsy: true })
+    .isInt()
+    .withMessage("Validation error: Invalid value 'page' in query params"),
+  query('visibleRows')
+    .optional({ checkFalsy: true })
+    .isInt()
+    .withMessage(
+      "Validation error: Invalid value 'visibleRows' in query params"
+    ),
 ]
