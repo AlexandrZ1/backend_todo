@@ -6,9 +6,29 @@ const {
   taskValidationResult,
 } = require('../validators/taskValidator')
 
-router.post('/:userId', taskController.createTask)
-router.patch('/:userId/:taskId', taskController.updateTask)
-router.delete('/:userId/:taskId', taskController.deleteTask)
-router.get('/:userId', taskController.getTasks)
+router.post(
+  '/:userId',
+  taskValidator,
+  taskValidationResult,
+  taskController.createTask
+)
+router.patch(
+  '/:userId/:taskId',
+  taskValidator,
+  taskValidationResult,
+  taskController.updateTask
+)
+router.delete(
+  '/:userId/:taskId',
+  taskValidator,
+  taskValidationResult,
+  taskController.deleteTask
+)
+router.get(
+  '/:userId',
+  taskValidator,
+  taskValidationResult,
+  taskController.getTasks
+)
 
 module.exports = router
