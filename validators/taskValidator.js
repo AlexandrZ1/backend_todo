@@ -1,6 +1,5 @@
 const { body, query, param, validationResult } = require('express-validator')
 const ApiError = require('../error/ApiError')
-const db = require('../db.json')
 
 exports.taskValidationResult = (req, res, next) => {
   const result = validationResult(req)
