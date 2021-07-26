@@ -48,5 +48,3 @@ exports.taskValidator = [
     .optional({ checkFalsy: true })
     .withMessage("Validation error: Invalid value 'filterBy' in query params"),
 ]
-
-exports.taskPutchValidator
